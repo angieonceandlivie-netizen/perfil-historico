@@ -3,18 +3,44 @@
 body {
   min-height: 100vh;
   font-family: 'DM Sans', sans-serif;
-  background: #0d1117;
-  background-image:
-    radial-gradient(ellipse at 20% 50%, rgba(56, 100, 180, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(90, 60, 160, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 60% 80%, rgba(20, 80, 120, 0.12) 0%, transparent 50%);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
+  overflow: auto;
+  position: relative;
+}
+
+/* IMAGEN DE FONDO ANIMADA */
+.fondo { 
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+background: url("img/james_watt_.jpg") no-repeat 80% ;
+  background-size: cover;
+    animation: kenBurns 20s ease-in-out infinite alternate;
+   
+  }
+
+@keyframes kenBurns {
+  0%   { transform: scale(1)    translateX(0px)   translateY(0px); }
+  25%  { transform: scale(1.05) translateX(-15px) translateY(5px); }
+  50%  { transform: scale(1.08) translateX(10px)  translateY(-8px); }
+  75%  { transform: scale(1.04) translateX(-8px)  translateY(12px); }
+  100% { transform: scale(1.06) translateX(12px)  translateY(-5px); }
+}
+
+/* OSCURECER FONDO */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  z-index: 0;
 }
 
 .card {
+  position: relative;
+  z-index: 1;
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -37,15 +63,15 @@ body {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
   border: 3px solid rgba(255,255,255,0.2);
   margin: 0 auto 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: 500;
-  color: #fff;
+  overflow: hidden;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .author-name {
@@ -113,9 +139,7 @@ body {
   transition: background 0.2s;
 }
 
-.ineq-card:hover {
-  background: rgba(255,255,255,0.1);
-}
+.ineq-card:hover { background: rgba(255,255,255,0.1); }
 
 .ineq-symbol {
   font-size: 22px;
@@ -191,4 +215,58 @@ body {
 .soc-btn:hover {
   background: rgba(255,255,255,0.16);
   color: #fff;
+}
+.particula {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: flotar linear forwards;
+  opacity: 0;
+}
+
+@keyframes flotar {
+  0%   { transform: translateY(0)      scale(0);   opacity: 0; }
+  10%  { transform: translateY(-10vh)  scale(1);   opacity: 1; }
+  90%  { transform: translateY(-90vh)  scale(1);   opacity: 0.7; }
+  100% { transform: translateY(-110vh) scale(0.5); opacity: 0; }
+}
+.author-handle {
+  font-size: 13px;
+  color: #7dd3fc;
+  margin-bottom: 4px;
+}
+
+.author-bio {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.quote-box {
+  position: relative;
+  padding-top: 18px;
+  font-style: italic;
+}
+
+.quote-icon {
+  position: absolute;
+  top: -6px;
+  left: 10px;
+  font-size: 36px;
+  color: #7dd3fc;
+  opacity: 0.5;
+  font-family: 'DM Serif Display', serif;
+  line-height: 1;
+}
+
+.quote-author {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  font-style: normal;
+  letter-spacing: 0.05em;
 }
